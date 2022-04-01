@@ -46,13 +46,13 @@ jobs:
           docker push $ECR_REGISTRY/laravel-sp:$IMAGE_TAG
       - name: Download task def
         run: |
-          aws ecs describe-task-definition --task-definition test-def --query taskDefinition > task-definition.json
+          aws ecs describe-task-definition --task-definition laravel1 --query taskDefinition > task-definition.json
       - name: Render Amazon ECS task definition for container
         id: render-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: test-def
+          container-name: laravel1
           image: ${{ steps.login-ecr.outputs.registry }}/laravel-sp:${{ github.sha }}
 
       - name: Deploy to Amazon ECS service
