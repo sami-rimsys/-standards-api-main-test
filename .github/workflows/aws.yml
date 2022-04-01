@@ -52,7 +52,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: laravel1
+          container-name: test-def
           image: ${{ steps.login-ecr.outputs.registry }}/laravel-sp:${{ github.sha }}
 
       - name: Deploy to Amazon ECS service
